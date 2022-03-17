@@ -1,5 +1,6 @@
 package com.kodilla.stream;
 
+import com.kodilla.stream.beautifier.PoemBeautifier;
 import com.kodilla.stream.lambda.ExpressionExecutor;
 import com.kodilla.stream.reference.FunctionalCalculator;
 
@@ -19,5 +20,12 @@ public class StreamMain {
         expressionExecutor.executeExpression(3, 4, FunctionalCalculator::addAToB);
         expressionExecutor.executeExpression(3, 4, FunctionalCalculator::subBFromA);
         expressionExecutor.executeExpression(3, 4, FunctionalCalculator::divideAByB);
+
+        System.out.println("Task 7.1 - Text decorator");
+        PoemBeautifier poemBeautifier = new PoemBeautifier();
+        poemBeautifier.beautify("AnyText", (text) -> ("ABC" + text + "ABC"));
+        poemBeautifier.beautify("AnyText", (text) -> (text.toUpperCase()));
+        poemBeautifier.beautify("AnyText", (text) -> (" * " + text + " * "));
+        poemBeautifier.beautify("AnyText", (text) -> ("_" + text.toLowerCase() + "_"));
     }
 }
