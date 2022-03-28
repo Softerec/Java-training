@@ -15,15 +15,7 @@ public class FlightFinder {
         availableAirports.put("Katowice", true);
         availableAirports.put("Gdansk", true);
 
-        boolean foundCity = false;
-        for(Map.Entry<String, Boolean> entry :availableAirports.entrySet()){
-            if (entry.getKey().equals(flight.getArrivalAirport())) {
-                foundCity = true;
-                System.out.println("Arrival airpot exist.");
-            }
-        }
-
-        if (foundCity) {
+        if (availableAirports.containsKey(flight.getArrivalAirport())) {
             System.out.println("Found route.");
         } else {
             throw new RouteNotFoundException();
