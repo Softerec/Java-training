@@ -8,7 +8,11 @@ public class FlightFindRunner {
 
         FlightFinder findFlight = new FlightFinder();
         try {
-            findFlight.findFlight(flight1);
+            if (findFlight.findFlight(flight1)) {
+                System.out.println("Arrival airport exist and is achievable.");
+            } else {
+                System.out.println("Arrival airport exist but is not achievable.");
+            }
         } catch (RouteNotFoundException e) {
             System.out.println("Exception: Arrival airport does not exist.");
         } finally {
