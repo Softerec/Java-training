@@ -10,8 +10,9 @@ public class MovieStoreRunner {
     public static void main(String[] args) {
         MovieStore movieStore = new MovieStore();
         Map<String, List<String>> moviesMap = movieStore.getMovies();
-        moviesMap.values().stream()
+        String movies = moviesMap.values().stream()
                 .flatMap(movie -> movie.stream())
-                .forEach(m -> System.out.print(m + "!"));
+                .collect(Collectors.joining("!"));
+        System.out.println(movies);
     }
 }
