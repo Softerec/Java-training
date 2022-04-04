@@ -12,4 +12,3 @@ public class FoodProduct {
         return name;
     }
 }
-
