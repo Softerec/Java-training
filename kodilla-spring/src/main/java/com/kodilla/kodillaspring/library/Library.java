@@ -8,19 +8,13 @@ import java.util.List;
 
 @Service
 public final class Library {
-
     private final List<String> books = new ArrayList<>();
-    private LibraryDbController libraryDbController;
 
     @Autowired
-    public void setLibraryDbController(final LibraryDbController libraryDbController) {
-      this.libraryDbController = libraryDbController;
-    }
-
+    private LibraryDbController libraryDbController;
     public void saveToDb() {
         libraryDbController.saveData();
     }
-
     public void loadFromDb() {
         libraryDbController.loadData();
     }
