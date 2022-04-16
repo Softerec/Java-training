@@ -1,8 +1,5 @@
 package com.kodilla.kodillaspring.library;
 
-import org.springframework.stereotype.Repository;
-
-@Repository
 public class LibraryDbController {
 
     public void saveData() {
