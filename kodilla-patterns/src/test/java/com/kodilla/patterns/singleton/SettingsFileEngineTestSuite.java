@@ -12,7 +12,7 @@ class SettingsFileEngineTestSuite {
 
     @BeforeAll
     public static void openSettingsFile() {
-        settingsFileEngine = new SettingsFileEngine();
+        settingsFileEngine = SettingsFileEngine.INSTANCE;
         settingsFileEngine.open("myapp.settings");
     }
 
