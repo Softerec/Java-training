@@ -43,6 +43,5 @@ public class LibraryTestSuite {
         assertEquals( 3, deeoCopyLibrary.getBooks().size());
         assertEquals(library.getBooks().iterator().next(), shallowCopyLibrary.getBooks().iterator().next());
         assertNotEquals(library.getBooks().iterator().next(), deeoCopyLibrary.getBooks().iterator().next());
-
     }
 }
