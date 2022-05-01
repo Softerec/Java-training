@@ -17,6 +17,5 @@ public final class ShapeFactory {
             default:
                 return null;
         }
-
     }
 }
