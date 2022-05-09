@@ -51,7 +51,7 @@ public class Invoice {
         this.number = number;
     }
 
-    private void setItems(List<Item> items) {
+    public void setItems(List<Item> items) {
         this.items = items;
     }
 }

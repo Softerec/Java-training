@@ -28,7 +28,7 @@ public class InvoiceDaoTestSuite {
         //Given & When
 
         Invoice invoice1 = new Invoice("1", null);
-        Invoice inv1 = invoiceDao.save(invoice1);
+        invoiceDao.save(invoice1);
 
         Product egg = new Product("Egg");
         Product carrot = new Product("Carrot");
@@ -56,17 +56,22 @@ public class InvoiceDaoTestSuite {
         itemDao.save(item1);
         itemDao.save(item2);
 
+        List<Item> items=List.of(item1,item2);
+        invoice1.setItems(items);
+        invoiceDao.save(invoice1);
+
         //Then
-        assertEquals("1", inv1.getNumber());
+        assertEquals("1", invoice1.getNumber());
 
-        System.out.println(inv1.getItems() ); // null
-        //System.out.println(inv1.getItems().size() ); // error
+        System.out.println(invoice1.getItems() ); // null
+        System.out.println(invoice1.getItems().size() ); // error
 
-        System.out.println(inv1.getNumber() );
+        System.out.println(invoice1.getNumber() );
         //System.out.println(inv1.getItems().get(0) ); // error
         System.out.println("\n\n\n!!!!!!!!!!!!\n\n\n\n");
 
         System.out.println(prodEgg.getItems().size()); // no error
+        assertNotEquals(0, invoice1.getId());
         assertEquals(1, prodEgg.getItems().size());
         assertEquals(it1, prodEgg.getItems().get(0));
         assertEquals("Carrot", prodCarrot.getName());
