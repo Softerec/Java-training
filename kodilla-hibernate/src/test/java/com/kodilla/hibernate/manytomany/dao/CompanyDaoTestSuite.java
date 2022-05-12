@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -57,6 +59,54 @@ class CompanyDaoTestSuite {
             companyDao.deleteById(greyMatterId);
         } catch (Exception e) {
             //do nothing
+        }
+    }
+
+    @Test
+    void testNamedQueries() {
+        //Given
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
+        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+
+        Company softwareMachine = new Company("Software Machine");
+        Company softEgg = new Company("Softegg");
+        Company greyMatter = new Company("Grey Matter");
+
+        softwareMachine.getEmployees().add(johnSmith);
+        softEgg.getEmployees().add(stephanieClarckson);
+        softEgg.getEmployees().add(lindaKovalsky);
+        greyMatter.getEmployees().add(johnSmith);
+        greyMatter.getEmployees().add(lindaKovalsky);
+
+        johnSmith.getCompanies().add(softwareMachine);
+        johnSmith.getCompanies().add(greyMatter);
+        stephanieClarckson.getCompanies().add(softEgg);
+        lindaKovalsky.getCompanies().add(softEgg);
+        lindaKovalsky.getCompanies().add(greyMatter);
+
+        //When
+        companyDao.save(softwareMachine);
+        int softwareMachineId = softwareMachine.getId();
+        companyDao.save(softEgg);
+        int softEggId = softEgg.getId();
+        companyDao.save(greyMatter);
+        int greyMatterId = greyMatter.getId();
+
+        List<Company> sofCompanies = companyDao.retrieveCompanyWithFirstThreeLetters("Sof");
+
+        //Then
+        try {
+            assertEquals(2, sofCompanies.size());
+        } finally {
+            //CleanUp
+            try {
+                companyDao.deleteById(softwareMachineId);
+                companyDao.deleteById(softEggId);
+                companyDao.deleteById(greyMatterId);
+            } catch (Exception e) {
+                System.out.println("No cleanup after testNamedQueries from CompanyDaoTestSuite");
+            }
         }
     }
 }
